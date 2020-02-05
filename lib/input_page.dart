@@ -15,7 +15,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  int height = 120;
+  int height = 180;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +92,13 @@ class _InputPageState extends State<InputPage> {
                         ),
                         Slider(
                           value: height.toDouble(),
-                          onChanged: null,
+                          activeColor: Color(0xffEB1555),
+                          inactiveColor: kActiveCardColor,
+                          onChanged: (double newValue) {
+                            setState(() {
+                              height = newValue.round();
+                            });
+                          },
                           min: 120.0,
                           max: 220.0,
                         )
