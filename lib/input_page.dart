@@ -89,6 +89,12 @@ class _InputPageState extends State<InputPage> {
                             )
                           ],
                         ),
+                        Slider(
+                          value: 180.0,
+                          onChanged: null,
+                          min: 120.0,
+                          max: 220.0,
+                        )
                       ],
                     ),
                   ),
