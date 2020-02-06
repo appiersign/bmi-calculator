@@ -17,6 +17,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   int height = 180;
   int weight = 60;
+  int age = 29;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,32 +136,24 @@ class _InputPageState extends State<InputPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            FloatingActionButton(
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.minus,
                               onPressed: () {
                                 setState(() {
                                   weight--;
                                 });
                               },
-                              backgroundColor: Color(0xFF4C4F5E),
-                              child: Icon(
-                                Icons.remove,
-                                color: Colors.white,
-                              ),
                             ),
                             SizedBox(
                               width: 15.0,
                             ),
-                            FloatingActionButton(
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.plus,
                               onPressed: () {
                                 setState(() {
                                   weight++;
                                 });
                               },
-                              backgroundColor: kGrayButton,
-                              child: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                              ),
                             ),
                           ],
                         ),
@@ -170,8 +163,45 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    colour: kReusableCardColor,
-                  ),
+                      colour: kReusableCardColor,
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'AGE',
+                            style: kLabelTextStyle,
+                          ),
+                          Text(
+                            age.toString(),
+                            style: kNumberTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundedIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                },
+                              ),
+                              SizedBox(
+                                width: 15.0,
+                              ),
+                              RoundedIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
                 ),
               ],
             ),
@@ -197,6 +227,28 @@ class _InputPageState extends State<InputPage> {
           )
         ],
       ),
+    );
+  }
+}
+
+class RoundedIconButton extends StatelessWidget {
+  final IconData icon;
+  final Function onPressed;
+
+  RoundedIconButton({this.icon, this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      onPressed: onPressed,
+      elevation: 6.0,
+      fillColor: kGrayButton,
+      shape: CircleBorder(),
+      child: Icon(icon),
     );
   }
 }
